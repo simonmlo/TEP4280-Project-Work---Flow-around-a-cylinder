@@ -1,6 +1,0 @@
-{
-  "file-series-version" : "1.0",
-  "files" : [
-    { "name" : "caseIcoFoam_40000.vtm", "time" : 200 }
-  ]
-}

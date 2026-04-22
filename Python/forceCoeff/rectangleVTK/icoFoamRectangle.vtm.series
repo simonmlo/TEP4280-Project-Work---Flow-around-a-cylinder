@@ -1,6 +1,0 @@
-{
-  "file-series-version" : "1.0",
-  "files" : [
-    { "name" : "icoFoamRectangle_10000.vtm", "time" : 100 }
-  ]
-}
