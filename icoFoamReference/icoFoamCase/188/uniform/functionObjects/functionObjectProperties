@@ -1,0 +1,78 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2512                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       dictionary;
+    location    "188/uniform/functionObjects";
+    object      functionObjectProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+cdf7e925f5746741c316f5fbcf39ad0dfca90775
+{
+    forceCoeffs
+    {
+        scalar
+        {
+            Cd              1.378229154744059;
+            CdPressure      1.026218300682978;
+            CdViscous       0.3520108540610811;
+            CdInternal      0;
+            Cd(f)           0.6891145773720295;
+            Cd(f)Pressure   0.513109150341489;
+            Cd(f)Viscous    0.1760054270305405;
+            Cd(f)Internal   0;
+            Cd(r)           0.6891145773720295;
+            Cd(r)Pressure   0.513109150341489;
+            Cd(r)Viscous    0.1760054270305405;
+            Cd(r)Internal   0;
+            Cl              0.2243984351005221;
+            ClPressure      0.2117956381259316;
+            ClViscous       0.01260279697459055;
+            ClInternal      0;
+            Cl(f)           0.1169085169874612;
+            Cl(f)Pressure   0.1058978202377278;
+            Cl(f)Viscous    0.01101069674973339;
+            Cl(f)Internal   0;
+            Cl(r)           0.1074899181130609;
+            Cl(r)Pressure   0.1058978178882037;
+            Cl(r)Viscous    0.001592100224857161;
+            Cl(r)Internal   0;
+            CmPitch         0.004709299437200155;
+            CmPitchPressure 1.174762039701088e-09;
+            CmPitchViscous  0.004709298262438115;
+            CmPitchInternal 0;
+            CmRoll          -2.2391694912426e-20;
+            CmRollPressure  -2.66161491188505e-20;
+            CmRollViscous   4.224454206424503e-21;
+            CmRollInternal  0;
+            CmYaw           -1.134823059063166e-20;
+            CmYawPressure   -9.989752636708391e-21;
+            CmYawViscous    -1.358477953923269e-21;
+            CmYawInternal   0;
+            Cs              -3.432928768632456e-20;
+            CsPressure      -2.223679249318839e-20;
+            CsViscous       -1.209249519313617e-20;
+            CsInternal      0;
+            Cs(f)           -2.851287443379394e-20;
+            Cs(f)Pressure   -2.110814888330259e-20;
+            Cs(f)Viscous    -7.404725550491352e-21;
+            Cs(f)Internal   0;
+            Cs(r)           -5.816413252530619e-21;
+            Cs(r)Pressure   -1.128643609885806e-21;
+            Cs(r)Viscous    -4.687769642644813e-21;
+            Cs(r)Internal   0;
+        }
+    }
+}
+
+
+// ************************************************************************* //
