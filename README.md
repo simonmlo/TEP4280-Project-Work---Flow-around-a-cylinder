@@ -61,8 +61,6 @@ To reduce CPU-time we give the simulation a starting velocity field, which speed
 setFields
 ```
 
-A better solution, instead of using setFields, would be to overwrite the first timestep with the latest data from the previous simulation. However this has a few setbacks, because you would have to first run the simulation once for all the different mesh resolutions. Since we are going to do multiple simulations for every mesh resolution, this is a better idea than using setFields. Another way to initialize a velocity field is to continue the simulation from a given time, which we also used.
-
 There are two better solutions for creating a more consistent initial velocity field.
 
 1. You can overwrite the first timestep with the latest data from the previous simulation. However, this has a few setbacks. You would have to run the entire simulation first to be able to overwrite the first timesteps. The latest data is also specific to the given mesh resolution, which means you have to run a full simulation every time you change the mesh resolution. This was not a problem, since we ran multiple simulations for every mesh.
