@@ -19,7 +19,7 @@ It might also be necessary to remove the VTK file, if that is present.
 rm -r VTK
 ```
 
-### 1 - Creating the blockMesh
+### 1 - Initializing the blockMesh
 When initializing the blockMesh I find it better, especially considering we're going to work on multiple meshes, that we do not use:
 
 ```bash
@@ -39,7 +39,7 @@ I came across an interesting function in OpenFoam
 transformPoints -scale "(x y z)"
 ```
 
-This is interesting because it simplifies the meshing significantly! It basically stretches the mesh in a desired direction. In less than 5 minutes I was able to simulate three cases:
+This is interesting because it can significantly speed up the possibility of simulating new geometries! It basically stretches the mesh in a desired direction. In less than 5 minutes I was able to simulate three cases:
 
 1. The Reference Cylinder
 
@@ -63,10 +63,16 @@ setFields
 
 A better solution, instead of using setFields, would be to overwrite the first timestep with the latest data from the previous simulation. However this has a few setbacks, because you would have to first run the simulation once for all the different mesh resolutions. Since we are going to do multiple simulations for every mesh resolution, this is a better idea than using setFields. Another way to initialize a velocity field is to continue the simulation from a given time, which we also used.
 
+There are two better solutions for creating a more consistent initial velocity field.
+
+1. You can overwrite the first timestep with the latest data from the previous simulation. However, this has a few setbacks. You would have to run the entire simulation first to be able to overwrite the first timesteps. The latest data is also specific to the given mesh resolution, which means you have to run a full simulation every time you change the mesh resolution. This was not a problem, since we ran multiple simulations for every mesh.
+
 ```bash
 cp -r 200/U 0/U
 cp -r 200/p 0/p
 ```
+
+2. Another way to initialize a velocity field is to continue from the last time step. This is something we used mainly to control how changes in numerical schemes affected the drag coefficient. This worked very well for what we used it for.
 
 ```bash
 foamListTimes -rm -time '200.05:300'
