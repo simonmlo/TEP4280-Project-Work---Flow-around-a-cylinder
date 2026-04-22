@@ -1,0 +1,172 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2512                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale 1;
+
+vertices
+(
+    // z = 0 (front face)
+    (-20 -20  0)  //  0
+    ( -1 -20  0)  //  1
+    (  1 -20  0)  //  2
+    ( 30 -20  0)  //  3
+
+    (-20  -1  0)  //  4
+    ( -1  -1  0)  //  5
+    (  1  -1  0)  //  6
+    ( 30  -1  0)  //  7
+
+    (-20   1  0)  //  8
+    ( -1   1  0)  //  9
+    (  1   1  0)  // 10
+    ( 30   1  0)  // 11
+
+    (-20  20  0)  // 12
+    ( -1  20  0)  // 13
+    (  1  20  0)  // 14
+    ( 30  20  0)  // 15
+
+    // z = -1 (back face)
+    (-20 -20 -1)  // 16
+    ( -1 -20 -1)  // 17
+    (  1 -20 -1)  // 18
+    ( 30 -20 -1)  // 19
+
+    (-20  -1 -1)  // 20
+    ( -1  -1 -1)  // 21
+    (  1  -1 -1)  // 22
+    ( 30  -1 -1)  // 23
+
+    (-20   1 -1)  // 24
+    ( -1   1 -1)  // 25
+    (  1   1 -1)  // 26
+    ( 30   1 -1)  // 27
+
+    (-20  20 -1)  // 28
+    ( -1  20 -1)  // 29
+    (  1  20 -1)  // 30
+    ( 30  20 -1)  // 31
+);
+
+blocks
+(
+    // Row 1 (bottom): y=-20 to y=-1
+    hex (16 17 21 20  0  1  5  4) (40 40 1) simpleGrading (0.25 0.25 1)  // block 1
+    hex (17 18 22 21  1  2  6  5) (10 40 1) simpleGrading (1    0.25 1)  // block 2
+    hex (18 19 23 22  2  3  7  6) (60 40 1) simpleGrading (4    0.25 1)  // block 3
+
+    // Row 2 (middle): y=-1 to y=1 — center block skipped (solid square)
+    hex (20 21 25 24  4  5  9  8) (40 10 1) simpleGrading (0.25 1    1)  // block 4
+    hex (22 23 27 26  6  7 11 10) (60 10 1) simpleGrading (4    1    1)  // block 6
+
+    // Row 3 (top): y=1 to y=20
+    hex (24 25 29 28  8  9 13 12) (40 40 1) simpleGrading (0.25 4    1)  // block 7
+    hex (25 26 30 29  9 10 14 13) (10 40 1) simpleGrading (1    4    1)  // block 8
+    hex (26 27 31 30 10 11 15 14) (60 40 1) simpleGrading (4    4    1)  // block 9
+);
+
+boundary
+(
+    inlet
+    {
+        type patch;
+        faces
+        (
+            ( 8 12 28 24)  // top-left block,    left face
+            ( 4  8 24 20)  // middle-left block, left face
+            ( 0  4 20 16)  // bottom-left block, left face
+        );
+    }
+
+    outlet
+    {
+        type patch;
+        faces
+        (
+            ( 3 19 23  7)  // bottom-right block, right face
+            ( 7 23 27 11)  // middle-right block, right face
+            (11 27 31 15)  // top-right block,    right face
+        );
+    }
+
+    box
+    {
+        type wall;
+        faces
+        (
+            ( 5  9 25 21)  // left side  of square
+            (10  6 22 26)  // right side of square
+            ( 9 10 26 25)  // top side   of square
+            ( 6  5 21 22)  // bottom side of square
+        );
+    }
+
+    top
+    {
+        type patch;
+        faces
+        (
+            (12 13 29 28)  // top-left block,    top face
+            (13 14 30 29)  // top-middle block,  top face
+            (14 15 31 30)  // top-right block,   top face
+        );
+    }
+
+    bottom
+    {
+        type patch;
+        faces
+        (
+            (16 17  1  0)  // bottom-left block,   bottom face
+            (17 18  2  1)  // bottom-middle block, bottom face
+            (18 19  3  2)  // bottom-right block,  bottom face
+        );
+    }
+
+    front
+    {
+        type empty;
+        faces
+        (
+            ( 0  1  5  4)  // block 1
+            ( 1  2  6  5)  // block 2
+            ( 2  3  7  6)  // block 3
+            ( 4  5  9  8)  // block 4
+            ( 6  7 11 10)  // block 6
+            ( 8  9 13 12)  // block 7
+            ( 9 10 14 13)  // block 8
+            (10 11 15 14)  // block 9
+        );
+    }
+
+    back
+    {
+        type empty;
+        faces
+        (
+            (16 20 21 17)  // block 1
+            (17 21 22 18)  // block 2
+            (18 22 23 19)  // block 3
+            (20 24 25 21)  // block 4
+            (22 26 27 23)  // block 6
+            (24 28 29 25)  // block 7
+            (25 29 30 26)  // block 8
+            (26 30 31 27)  // block 9
+        );
+    }
+);
+
+// ************************************************************************* //
