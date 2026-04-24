@@ -116,7 +116,7 @@ boundary
 
     top
     {
-        type patch;
+        type symmetryPlane;
         faces
         (
             (12 13 29 28)  // top-left block,    top face
@@ -127,7 +127,7 @@ boundary
 
     bottom
     {
-        type patch;
+        type symmetryPlane;
         faces
         (
             (16 17  1  0)  // bottom-left block,   bottom face
